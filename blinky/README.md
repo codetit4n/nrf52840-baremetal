@@ -1,8 +1,12 @@
 # blinky - nRF52840 baremetal
 
-### Demo
+> [!INFO]
+> Detailed article about this project coming soon on my [blog](https://loke.sh/blog).
 
-<img src="assets/demo.gif" width="150px" />
+<details>
+    <summary>Demo</summary>
+    <img src="assets/demo.gif" width="150px" />
+</details>
 
 ### Commands
 
