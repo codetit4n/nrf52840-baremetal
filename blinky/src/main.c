@@ -35,32 +35,21 @@ static void delay(volatile uint32_t ctr) {
   }
 }
 
-// testing
 int main(void) {
-  // Make test pin an output
+
   P0_DIR |= (1u << LED_PIN);
 
-  // Drive it low (active-low LEDs turn ON)
-  P0_OUT &= ~(1u << LED_PIN);
-
   while (1) {
+    // Set PIN HIGH
+    P0_OUT |= (1u << LED_PIN);
+
+    // Delay
+    delay(1000000);
+
+    // Set PIN LOW
+    P0_OUT &= ~(1u << LED_PIN);
+
+    // Delay
+    delay(1000000);
   }
 }
-
-// int main(void) {
-//
-//   P0_DIR |= (1u << LED_PIN);
-//
-//   while (1) {
-//     // Set PIN HIGH
-//     P0_OUT |= (1u << LED_PIN);
-//
-//     // Delay
-//     delay(100000);
-//
-//     P0_OUT &= ~(1u << LED_PIN);
-//
-//     // Delay
-//     delay(100000);
-//   }
-// }

@@ -3,6 +3,10 @@ PROJECT = blinky
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 
+# Folders
+SRC_DIR = src
+BUILD_DIR = build
+
 # CPU options: nRF52840 = Cortex-M4, Thumb instruction set
 CPUFLAGS = -mcpu=cortex-m4 -mthumb
 
@@ -10,34 +14,44 @@ CPUFLAGS = -mcpu=cortex-m4 -mthumb
 CFLAGS = $(CPUFLAGS) -Wall -Wextra -O0 -g3 -ffreestanding
 
 # Linker flags
-LDFLAGS = $(CPUFLAGS) -nostartfiles -nostdlib -Wl,-Tlinker.ld
+LDFLAGS = $(CPUFLAGS) -nostartfiles -nostdlib -Wl,-T$(SRC_DIR)/linker.ld
 
 # Source files
-SRCS = src/startup.s src/main.c
+SRCS = $(SRC_DIR)/startup.s $(SRC_DIR)/main.c
 
-# Object files
-OBJS = src/startup.o src/main.o
+# Object files go inside build/
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJS := $(OBJS:$(SRC_DIR)/%.s=$(BUILD_DIR)/%.o)
 
-# Default target: build ELF + HEX
-all: $(PROJECT).elf $(PROJECT).hex
+# Final outputs
+ELF = $(BUILD_DIR)/$(PROJECT).elf
+HEX = $(BUILD_DIR)/$(PROJECT).hex
 
-# Link object files into a final ELF image
-$(PROJECT).elf: $(OBJS)
+# Default target
+all: $(ELF) $(HEX)
+
+# Create build directory if missing
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Link the ELF
+$(ELF): $(OBJS) | $(BUILD_DIR)
 	$(CC) $(LDFLAGS) -o $@ $^
 
-
-# Assemble .s files
-src/%.o: src/%.s
-	$(CC) $(CPUFLAGS) -c $< -o $@
-
-# Compile .c files
-src/%.o: src/%.c
+# Compile C files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Convert ELF -> Intel HEX (useful for flashing)
-$(PROJECT).hex: $(PROJECT).elf
+# Assemble .s files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.s | $(BUILD_DIR)
+	$(CC) $(CPUFLAGS) -c $< -o $@
+
+# Create HEX file
+$(HEX): $(ELF)
 	$(OBJCOPY) -O ihex $< $@
 
-# Clean build artifacts
+# Clean
 clean:
-	rm -f $(PROJECT).elf $(PROJECT).hex $(OBJS)
+	rm -rf $(BUILD_DIR) *.uf2
+
+.PHONY: all clean
