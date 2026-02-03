@@ -3,3 +3,4 @@
 **/**.elf
 **/**.uf2
 build/
+.cache
