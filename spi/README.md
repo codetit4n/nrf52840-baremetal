@@ -1,4 +1,4 @@
-# Serial Peripheral Interface (SPI) - nRF52840 baremetal
+## Serial Peripheral Interface (SPI) - nRF52840 baremetal
 
 This project demonstrates a SPI Master (SPIM0) implementation on the nRF52840-DK, written in
 pure baremetal.

@@ -1,4 +1,4 @@
-# blinky - nRF52840 baremetal
+## blinky - nRF52840 baremetal
 
 <details>
     <summary>Demo</summary>

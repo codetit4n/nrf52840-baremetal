@@ -1,17 +1,18 @@
-# Universal Asynchronous Receiver/Transmitter with EasyDMA (UARTE) — nRF52840 bare-metal (TX-only)
+## Universal Asynchronous Receiver/Transmitter with EasyDMA (UARTE) — nRF52840 bare-metal (TX-only)
 
 This project demonstrates a **TX-only UARTE (UART with EasyDMA)** implementation on the nRF52840-DK,
 written in **pure bare-metal** (no SDK, no HAL, no Zephyr).
 
+This is **not** a full UART driver.
+
 ## Demo
 
 This shows **how UARTE works at the register and EasyDMA level** and how it can be used as a
-**simple logging/debug output channel** during bring-up.
-
-This is **not** a full UART driver.
+**simple logging/debug output channel**.
 
 - Logic analyzer (PulseView) to verify the TX signal on the UARTE TX pin (P0.06):
   ![Logic Analyzer Output](./assets/logic-analyzer-ss.png)
+  > Data sent on TX: `Hello UARTE!`
 - Serial terminal output (115200 8N1) from the nRF52840-DK's virtual COM port using minicom:
   ![Serial Terminal Output](./assets/demo.gif)
   ```shell
