@@ -47,7 +47,7 @@ static void init_uarte0(void) {
 	// PSEL format: PIN[4:0] | PORT(bit5) | CONNECT(bit31: 0=connected, 1=disconnected)
 	PSEL_TXD = (TX_PIN << 0) | (0 << 5) | (0 << 31);
 
-	PSEL_RXD = (1 << 31); // RX disconnected (TX-only bring-up)
+	PSEL_RXD = (1 << 31); // RX disconnected (TX-only)
 
 	CONFIG = (0 << 0) |   // HWFC disabled
 		 (0x0 << 1) | // PARITY excluded

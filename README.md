@@ -3,4 +3,4 @@
 Writing baremetal to understand the nRF52840.
 
 > [!IMPORTANT]
-> Detailed article about this coming soon on my [blog](https://loke.sh/blog).
+> Read the detailed article about this project [here](https://loke.sh/blog/nrf52840-web-server/1-nrf52840-baremetal/).
