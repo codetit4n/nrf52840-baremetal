@@ -1,4 +1,6 @@
-## blinky - nRF52840 baremetal
+## Blinky - nRF52840 baremetal
+
+https://loke.sh/blog/nrf52840-web-server/1-nrf52840-baremetal/#blinky-hello-world
 
 <details>
     <summary>Demo</summary>

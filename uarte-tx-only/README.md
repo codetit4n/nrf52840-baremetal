@@ -1,5 +1,7 @@
 ## Universal Asynchronous Receiver/Transmitter with EasyDMA (UARTE) — nRF52840 bare-metal (TX-only)
 
+https://loke.sh/blog/nrf52840-web-server/1-nrf52840-baremetal/#uarte-transmit-only-minimal-logger
+
 This project demonstrates a **TX-only UARTE (UART with EasyDMA)** implementation on the nRF52840-DK,
 written in **pure bare-metal** (no SDK, no HAL, no Zephyr).
 

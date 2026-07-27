@@ -1,5 +1,7 @@
 ## Serial Peripheral Interface (SPI) - nRF52840 baremetal
 
+https://loke.sh/blog/nrf52840-web-server/1-nrf52840-baremetal/#spi-sending-and-receiving-bytes
+
 This project demonstrates a SPI Master (SPIM0) implementation on the nRF52840-DK, written in
 pure baremetal.
 
